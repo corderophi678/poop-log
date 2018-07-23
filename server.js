@@ -1,5 +1,6 @@
 require('dotenv').config()
 const path = require('path')
+const server = require('http').createServer()
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -32,6 +33,8 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-app.listen(PORT, () => {
+server.on('request', app)
+
+server.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })

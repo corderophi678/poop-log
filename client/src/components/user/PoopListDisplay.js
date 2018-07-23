@@ -9,19 +9,26 @@ export function PoopListDisplay(props) {
     <UserContext.Consumer>
       {({ deletePoop }) => {
         return (
-          <div className="flex flex-column w-third-ns w-100 justify-center items-center mt3">
+          <div className="flex flex-column w-50-ns w-100 justify-center items-center mt3">
             {poops &&
               poops.map(poop => (
                 <div
                   key={poop._id}
-                  className="w-100 f5 fw5 lh-copy flex flex-row justify-center items-center">
-                  <div className="w-two-thirds-ns">
+                  className="w-100 f5 fw5 lh-copy flex flex-row justify-center items-center bb bw1 b-black-80">
+                  <div className="w-two-thirds">
                     <p className="dib">
                       {poop.didPoop ? 'Poo @ ' : 'Pee @ '}{' '}
                       {moment(poop.time).format('h:mm a, MMM Do')}
+                      <br />
+                      {poop.notes ? (
+                        <small className="measure">
+                          <span className="b mr2">Notes:</span>
+                          {poop.notes}
+                        </small>
+                      ) : null}
                     </p>
                   </div>
-                  <div className="w-third-ns flex flex-row justify-around">
+                  <div className="w-third flex flex-row mh3  justify-around">
                     <Button
                       onClick={() => toggleShowEditPoop(poop)}
                       type="button"

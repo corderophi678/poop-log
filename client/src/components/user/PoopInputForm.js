@@ -84,6 +84,7 @@ export class PoopInputForm extends Component {
               <label htmlFor="notes">Notes:</label>
               <textarea
                 placeholer="This poop was a little soft..."
+                className="br2 ba b--black-30 black bg-white pa2 measure"
                 name="notes"
                 id="notes"
                 onChange={handleInputChange}

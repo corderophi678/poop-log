@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server:prod": "node server.js",
+    "server:prod": "NODE_ENV=production forever server.js",
     "client:prod": "npm run build --prefix client",
     "client:install": "npm install --prefix client",
     "server:dev": "nodemon server.js",

@@ -3,7 +3,6 @@ const path = require('path')
 const server = require('http').createServer()
 const express = require('express')
 const mongoose = require('mongoose')
-//const cors = require('cors')
 
 const { router: users } = require('./routes/users')
 const { router: pups } = require('./routes/pups')
@@ -20,7 +19,6 @@ mongoose
 
 require('./middleware').setupMiddleware(app)
 
-//app.use(cors())
 app.use('/api/users', users)
 app.use('/api/pups', pups)
 app.use('/api/poops', poops)

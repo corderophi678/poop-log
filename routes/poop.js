@@ -36,9 +36,6 @@ router.post(
   (req, res) => {
     const targetPoopId = req.params.id
     let { didPoop, time, notes } = req.body
-    console.log('didPoop', didPoop)
-    console.log('time', time)
-    console.log('notes', notes)
     Poop.findOneAndUpdate(
       { _id: targetPoopId },
       { didPoop, time, notes },

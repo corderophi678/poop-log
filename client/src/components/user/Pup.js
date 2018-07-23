@@ -23,9 +23,9 @@ export class Pup extends Component {
       }
     })
   }
-  toggleShowEditPoop = poop => {
+  toggleShowEditPoop = (poop) => {
     if (poop) {
-      const { time, id, notes } = poop
+      const { time, _id, notes } = poop
       const t = new Date(time)
       const m = t.getMonth()
       const h = t.getHours()
@@ -34,7 +34,7 @@ export class Pup extends Component {
       this.setState(prevState => {
         return {
           ...prevState,
-          editPoopId: id,
+          editPoopId: _id,
           hour: h,
           minute: min,
           date: d,
@@ -46,7 +46,8 @@ export class Pup extends Component {
     } else {
       this.setState(prevState => ({
         ...prevState,
-        showEditPoop: !prevState.showEditPoop
+        showEditPoop: !prevState.showEditPoop,
+        editPoopId: ''
       }))
     }
   }

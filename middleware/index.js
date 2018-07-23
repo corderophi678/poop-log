@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser')
 const logger = require('morgan')
 const passport = require('passport')
+const cors = require('cors')
 
 const { passportConfig } = require('./passport')
 
@@ -12,6 +13,7 @@ function setupMiddleware(app) {
     process.env.NODE_ENV !== 'production' ||
     process.env.NODE_ENV !== 'prod'
   ) {
+    app.use(cors())
     app.use(logger('combined'))
   }
 }

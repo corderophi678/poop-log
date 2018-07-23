@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import {
-  UserContext,
   SubmitButton,
   SelectGroup,
   Button
@@ -12,7 +11,6 @@ export class PoopInputForm extends Component {
     const {
       showAddPoop,
       toggleAddPoop,
-      showEditPoop,
       toggleEditPoop,
       minuteOptions,
       dateOptions,

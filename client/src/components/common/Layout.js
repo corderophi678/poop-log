@@ -7,7 +7,7 @@ export function Layout({ children }) {
       <div className="self-center mt4">
         <p className="b code f5">
           Problems? Reach out via Twitter{' '}
-          <a href="https://twitter.com/corderophi678" target="_blank">@corderophi678</a>
+          <a href="https://twitter.com/corderophi678" target="_blank" rel="noopener noreferrer">@corderophi678</a>
         </p>
       </div>
     </div>

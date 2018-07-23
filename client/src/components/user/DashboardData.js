@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from '@reach/router'
 
 import { Layout, LabeledInput, Button, SubmitButton } from 'components/common'
 import { PupLink } from 'components/user'

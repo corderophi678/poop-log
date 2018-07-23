@@ -5,9 +5,6 @@ import moment from 'moment'
 import { Button, UserContext } from 'components/common'
 
 export class PupLink extends Component {
-  componentDidMount() {
-    //    this.props.getPupData(this.props.id)
-  }
   addItem = (didPoop, fn) => {
     const { id } = this.props
     const time = Date.now()
@@ -20,7 +17,9 @@ export class PupLink extends Component {
       <UserContext.Consumer>
         {({ poops, addPoop, isLoading }) => {
           const lastPoop =
-            poops && poops[id] && poops[id][0] ? poops[id][0].time : null
+            poops && poops[id] && poops[id].length > 0
+              ? poops[id].find(el => el.didPoop)
+              : null
           return (
             <div className="mw6 center pa2 flex justify-between bb b--black-30">
               <div className="flex flex-column">

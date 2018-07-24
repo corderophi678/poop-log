@@ -130,11 +130,7 @@ export class UserProvider extends Component {
           console.log(err.response.data)
         }
       )
-      .then(res => {
-        if (Object.keys(this.state.poops).length === this.state.pups.length) {
-          this._unsetLoading()
-        }
-      })
+      .then(res => this._unsetLoading())
   }
   editPup = () => {}
   deletePup = pupId => {

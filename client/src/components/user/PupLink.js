@@ -28,7 +28,7 @@ export class PupLink extends Component {
                 </Link>
                 {lastPoop ? (
                   <span className="f6 fw5 lh-copy mt2">
-                    Last Poop: {moment(lastPoop).format('h:mm a, MMM Do')}
+                    Last Poop: {moment(lastPoop.time).format('h:mm a, MMM Do')}
                   </span>
                 ) : isLoading ? (
                   <h1>Loading...</h1>

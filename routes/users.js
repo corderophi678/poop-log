@@ -6,6 +6,7 @@ const router = require('express').Router()
 const { validators } = require('../lib/validators')
 const { User } = require('../models/User')
 const { Pup } = require('../models/Pup')
+const { Poop } = require('../models/Poop')
 const JWT_SECRET = process.env.JWT_SECRET
 
 // @route POST api/users/register
@@ -105,19 +106,35 @@ router.get(
 // @route DELETE api/users
 // @desc Delete user and their pups and poops
 // @access Private
-//router.delete(
-//  '/',
-//  passport.authenticate('jwt', { session: false }),
-//  (req, res) => {
-//    const user = req.user.id
-//    Reminder.deleteMany({ user })
-//      .then(() => {
-//        User.findOneAndRemove({ _id: user }).then(() => {
-//          res.json({ success: true })
-//        })
-//      })
-//      .catch(e => res.status(400).json(e))
-//  }
-//)
+router.delete(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    let pupIds = []
+    const userId = req.user.id
+    User.findById(userId)
+      .then(user => {
+        Pup.find({ user: userId })
+          .then(pups => {
+            pupIdsForPoopDeletion = pups.map(pup => ({ pup: pup._id }))
+            pupIdsForPupDeletion = pups.map(pup => ({ _id: pup._id }))
+            Poop.deleteMany({ $or: pupIdsForPoopDeletion })
+              .then(() =>
+                Pup.deleteMany({ $or: pupIdsForPupDeletion })
+                  .then(() => {
+                    user
+                      .remove()
+                      .then(() => res.json({ success: true }))
+                      .catch(e => res.json(e))
+                  })
+                  .catch(e => console.warn(e))
+              )
+              .catch(e => console.warn(e))
+          })
+          .catch(e => console.warn(e))
+      })
+      .catch(e => console.warn(e))
+  }
+)
 
 module.exports = { router }

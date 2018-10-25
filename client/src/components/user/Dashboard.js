@@ -12,6 +12,7 @@ export class Dashboard extends Component {
     return (
       <UserContext.Consumer>
         {({
+          deleteUserAccount,
           isAuthenticated,
           isLoading,
           addPup,
@@ -25,6 +26,7 @@ export class Dashboard extends Component {
           } else {
             return (
               <DashboardData
+                deleteUserAccount={deleteUserAccount}
                 getPupData={getPupData}
                 isLoading={isLoading}
                 addPup={addPup}

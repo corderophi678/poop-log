@@ -80,6 +80,14 @@ export class UserProvider extends Component {
       .catch(err => this._setErrors(err.response.data))
     this._unsetLoading()
   }
+  deleteUserAccount = () => {
+    if (window.confirm('Are you sure? All your data will be deleted and this cannot be undone.')) {
+      axios
+        .delete('/api/users')
+        .then(res => this.logUserOut())
+        .catch(err => this._setErrors(err.response.data))
+    }
+  }
   // Pup Stuff
   addPup = name => {
     axios
@@ -200,6 +208,7 @@ export class UserProvider extends Component {
           logUserIn: this.logUserIn,
           logUserOut: this.logUserOut,
           registerUser: this.registerUser,
+          deleteUserAccount: this.deleteUserAccount,
           addPup: this.addPup,
           getPupsData: this.getPupsData,
           getPupData: this.getPupData,

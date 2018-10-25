@@ -23,7 +23,7 @@ export class Pup extends Component {
       }
     })
   }
-  toggleShowEditPoop = (poop) => {
+  toggleShowEditPoop = poop => {
     if (poop) {
       const { time, _id, notes } = poop
       const t = new Date(time)
@@ -50,6 +50,13 @@ export class Pup extends Component {
         editPoopId: ''
       }))
     }
+  }
+  closeAddEditPoop = () => {
+    this.resetPoopData()
+    this.setState({
+      showEditPoop: false,
+      showAddPoop: false
+    })
   }
   resetPoopData = () => {
     const now = new Date()
@@ -170,7 +177,10 @@ export class Pup extends Component {
             return (
               <Layout>
                 <div className="mt2">
-                  <h1 className="dib f3">{pup.name}'s Poop Log</h1>
+                  <h1 className="dib f3">
+                    {pup.name}
+                    's Poop Log
+                  </h1>
                   <Button
                     type="button"
                     onClick={() => deletePup(this.props.pupId)}
@@ -183,6 +193,7 @@ export class Pup extends Component {
                     <PoopInputForm
                       showAddPoop={this.state.showAddPoop}
                       showEditPoop={this.state.showEditPoop}
+                      closeAddEditPoop={this.closeAddEditPoop}
                       toggleAddPoop={this.toggleShowAddPoop}
                       toggleEditPoop={this.toggleShowEditPoop}
                       pupId={this.props.pupId}

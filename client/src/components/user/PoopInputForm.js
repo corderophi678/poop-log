@@ -10,6 +10,8 @@ export class PoopInputForm extends Component {
   render() {
     const {
       showAddPoop,
+      showEditPoop,
+      closeAddEditPoop,
       toggleAddPoop,
       toggleEditPoop,
       minuteOptions,
@@ -26,6 +28,16 @@ export class PoopInputForm extends Component {
       addPoop,
       editPoop
     } = this.props
+    let submitButtonLabel = 'Submit';
+    if (showAddPoop && didPoop) {
+      submitButtonLabel = 'Add Poop'
+    } else if (showAddPoop && !didPoop) {
+      submitButtonLabel = 'Add Pee'
+    } else if (showEditPoop && didPoop) {
+      submitButtonLabel = 'Edit Poop'
+    } else if (showEditPoop && !didPoop) {
+      submitButtonLabel = 'Edit Pee'
+    }
     return (
       <form
         className="w-100"
@@ -90,10 +102,10 @@ export class PoopInputForm extends Component {
               />
             </div>
             <div className="mt3">
-              <SubmitButton label={showAddPoop ? 'Add Poop' : 'Edit Poop'} />
+              <SubmitButton label={submitButtonLabel} />
               <Button
                 type="button"
-                onClick={showAddPoop ? toggleAddPoop : toggleEditPoop}
+                onClick={closeAddEditPoop}
                 danger
                 label="Cancel"
               />

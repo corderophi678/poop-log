@@ -33,7 +33,7 @@ export class DashboardData extends Component {
     this.props.getPupsData()
   }
   render() {
-    const { addPup, isLoading, pups, errors, getPupData } = this.props
+    const { addPup, isLoading, pups, errors, getPupData, deleteUserAccount } = this.props
     return (
       <Layout>
         <h1>Welcome to your dashboard.</h1>
@@ -92,6 +92,14 @@ export class DashboardData extends Component {
             </form>
           )}
         </div>
+      <div className="mt3">
+        <Button
+          onClick={deleteUserAccount}
+          danger
+          type="button"
+          label="Delete Account"
+        />
+      </div>
       </Layout>
     )
   }
